@@ -1,0 +1,24 @@
+services:
+  postgres:
+    # alpine is smaller compared to debian
+    image: postgres:16-alpine
+    container_name: linkshortener-db
+    # auto restart on crash or reboot, unless running docker stop command
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      # toverify the container is ready and running (accept connection)
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:

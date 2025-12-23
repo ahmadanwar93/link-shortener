@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "NodeNext", // will have to write .js extension during importing, because TS doesnt rewrite import path during compilation
+    "moduleResolution": "NodeNext",
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist", // compiled js goes here
+    "rootDir": "./src", // source files lives here
+    "resolveJsonModule": true,
+    "declaration": true, // will produce d.ts files
+    "declarationMap": true, // will produce js.map so that stack traces points to ts source lines, not compiled .js files
+    "sourceMap": true,
+    "noUncheckedIndexedAccess": true, // has to guard type both array index and object key access, in case that the key or index does not exists
+    "noImplicitReturns": true, // has to properly typed all the return path in function
+    "noFallthroughCasesInSwitch": true, // has to do break in each case in switch
+    "exactOptionalPropertyTypes": true // cannot use optional ?, has to properly do undefined
+  },
+  "include": ["src/**/*"], // here it means all the files and folders of any depth
+  "exclude": ["node_modules", "dist"]
+}
