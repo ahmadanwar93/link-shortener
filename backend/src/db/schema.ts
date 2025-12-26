@@ -64,6 +64,7 @@ export const account = pgTable("account", {
   }),
   scope: text("scope"),
   idToken: text("id_token"),
+  password: text("password"),
   createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
   updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
 });
