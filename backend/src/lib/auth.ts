@@ -3,6 +3,7 @@ import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { db } from "../db";
 import { env } from "../config/env";
 import * as schema from "../db/schema.js";
+// import { openAPI } from "better-auth/plugins";
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
@@ -20,4 +21,7 @@ export const auth = betterAuth({
   },
 
   trustedOrigins: [env.FRONTEND_URL],
+  plugins: [
+    // openAPI(), // Adds /api/auth/reference endpoint
+  ],
 });
