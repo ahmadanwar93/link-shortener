@@ -21,6 +21,7 @@ export async function buildApp() {
     origin: env.FRONTEND_URL,
     credentials: true,
   });
+  console.log("console", env.FRONTEND_URL);
 
   await app.register(cookie, {
     // Cookie signing secret (optional but recommended)
