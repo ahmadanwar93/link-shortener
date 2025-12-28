@@ -4,6 +4,7 @@ import cookie from "@fastify/cookie";
 import { env } from "./config/env.js";
 import { logger } from "./lib/logger.js";
 import { authRoutes } from "./routes/auth.js";
+import { urlRoutes } from "./routes/urls.js";
 
 export async function buildApp() {
   // in this case, we are building the root container level, we are not splitting into plugin yet
@@ -21,7 +22,6 @@ export async function buildApp() {
     origin: env.FRONTEND_URL,
     credentials: true,
   });
-  console.log("console", env.FRONTEND_URL);
 
   await app.register(cookie, {
     // Cookie signing secret (optional but recommended)
@@ -29,6 +29,7 @@ export async function buildApp() {
   });
 
   await app.register(authRoutes);
+  await app.register(urlRoutes);
 
   app.addHook("onResponse", (request, reply, done) => {
     // conceptually quite similar to axios interceptor, but happens on server side

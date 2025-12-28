@@ -2,7 +2,6 @@ import { buildApp } from "./app.js";
 import { env } from "./config/env.js";
 import { logger } from "./lib/logger.js";
 import { closeDb, db } from "./db/index.js";
-import { user } from "./db/schema.js";
 
 // index fle is the entry point (file that runs first)
 // it is being used to configure Fastify app

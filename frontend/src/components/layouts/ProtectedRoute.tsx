@@ -12,7 +12,6 @@ export function ProtectedRoute() {
       </div>
     );
   }
-  console.log(isAuthenticated);
   if (!isAuthenticated) {
     // default behavior is push into the history stack, we would like to replace it
     return <Navigate to="/login" state={{ from: location }} replace />;
