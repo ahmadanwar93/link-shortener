@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { UrlForm } from "@/components/urls/UrlForm";
+import { UrlList } from "@/components/urls/UrlList";
 
 export default function Dashboard() {
   return (
@@ -10,14 +10,7 @@ export default function Dashboard() {
           <CardTitle>Shorten a URL</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex gap-4">
-            <Input
-              type="url"
-              placeholder="https://example.com/very/long/url"
-              className="flex-1"
-            />
-            <Button>Shorten</Button>
-          </div>
+          <UrlForm />
         </CardContent>
       </Card>
 
@@ -26,9 +19,7 @@ export default function Dashboard() {
           <CardTitle>Your URLs</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="text-center py-8 text-muted-foreground">
-            <p>No URLs yet. Create your first short link above!</p>
-          </div>
+          <UrlList />
         </CardContent>
       </Card>
     </div>
