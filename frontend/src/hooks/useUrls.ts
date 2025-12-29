@@ -18,6 +18,8 @@ export function useUrls() {
       return data;
     },
     staleTime: 30 * 1000,
+    // fresh refetch on return
+    refetchOnWindowFocus: "always",
   });
 }
 

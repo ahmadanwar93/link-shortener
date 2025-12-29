@@ -18,6 +18,7 @@ export function UrlList() {
   const { data: urls, isLoading, error } = useUrls();
 
   if (isLoading) {
+    // TODO: maybe can use spinner instead
     return (
       <div className="space-y-4">
         {[1, 2, 3].map((i) => (
