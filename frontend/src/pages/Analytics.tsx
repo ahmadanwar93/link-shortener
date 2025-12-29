@@ -4,8 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAnalytics } from "@/hooks/useAnalytics";
 import { TimelineChart } from "@/components/analytics/TimelineChart";
-import { DevicesChart } from "@/components/analytics/DevicesChart";
-import { BarChartComponent } from "@/components/analytics/BarChart";
+import { StatsTable } from "@/components/analytics/StatsTable";
 
 export default function Analytics() {
   const { code } = useParams<{ code: string }>();
@@ -49,7 +48,8 @@ export default function Analytics() {
         </Button>
         <div className="min-w-0 flex-1">
           <h1 className="text-2xl font-bold truncate">
-            Analytics for /{analytics.shortCode}
+            Analytics for{" "}
+            <span className="text-primary">{analytics.shortUrl}</span>
           </h1>
           <p className="text-sm text-muted-foreground truncate">
             {analytics.originalUrl}
@@ -76,7 +76,7 @@ export default function Analytics() {
             <CardTitle>Devices</CardTitle>
           </CardHeader>
           <CardContent>
-            <DevicesChart data={analytics.devices} />
+            <StatsTable data={analytics.devices} label="Device" />
           </CardContent>
         </Card>
 
@@ -85,7 +85,7 @@ export default function Analytics() {
             <CardTitle>Browsers</CardTitle>
           </CardHeader>
           <CardContent>
-            <BarChartComponent data={analytics.browsers} />
+            <StatsTable data={analytics.browsers} label="Browser" />
           </CardContent>
         </Card>
 
@@ -94,7 +94,7 @@ export default function Analytics() {
             <CardTitle>Referrers</CardTitle>
           </CardHeader>
           <CardContent>
-            <BarChartComponent data={analytics.referrers} />
+            <StatsTable data={analytics.referrers} label="Referrer" />
           </CardContent>
         </Card>
       </div>

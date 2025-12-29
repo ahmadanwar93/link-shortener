@@ -36,6 +36,7 @@ export interface AggregatedDataPoint {
 export interface UrlAnalytics {
   urlId: number;
   shortCode: string;
+  shortUrl: string;
   originalUrl: string;
   totalClicks: number;
   timeline: TimelineDataPoint[];

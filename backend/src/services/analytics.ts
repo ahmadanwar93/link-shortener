@@ -1,6 +1,7 @@
 import { eq, sql, desc } from "drizzle-orm";
 import { db as defaultDb } from "../db/index.js";
 import { clicks, urls } from "../db/schema.js";
+import { env } from "../config/env.js";
 export interface TimelineDataPoint {
   date: string;
   clicks: number;
@@ -14,6 +15,7 @@ export interface AggregatedDataPoint {
 export interface UrlAnalytics {
   urlId: number;
   shortCode: string;
+  shortUrl: string;
   originalUrl: string;
   totalClicks: number;
   timeline: TimelineDataPoint[];
@@ -108,6 +110,7 @@ export function createAnalyticsService(db = defaultDb): AnalyticsService {
       return {
         urlId: url.id,
         shortCode: url.shortCode,
+        shortUrl: `${env.BETTER_AUTH_URL}/s/${url.shortCode}`,
         originalUrl: url.originalUrl,
         totalClicks: url.clickCount ?? 0,
         timeline: timelineData,
