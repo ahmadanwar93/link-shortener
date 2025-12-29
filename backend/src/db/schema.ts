@@ -103,6 +103,29 @@ export const urls = pgTable(
   ]
 );
 
+export const clicks = pgTable(
+  "clicks",
+  {
+    id: serial("id").primaryKey(),
+    urlId: integer("url_id")
+      .notNull()
+      .references(() => urls.id, { onDelete: "cascade" }),
+
+    deviceType: varchar("device_type", { length: 20 }), // "mobile", "tablet", "desktop"
+    browser: varchar("browser", { length: 50 }),
+    os: varchar("os", { length: 50 }),
+    referer: text("referer"),
+    clickedAt: timestamp("clicked_at", { withTimezone: true }).defaultNow(),
+  },
+  (table) => [
+    // composite index for both urlId and clickedAt
+    index("idx_clicks_url_id_clicked_at").on(table.urlId, table.clickedAt),
+  ]
+);
+
+export type Click = typeof clicks.$inferSelect;
+export type NewClick = typeof clicks.$inferInsert;
+
 // we want to do type inference from the schema, instead of defining our own type again
 // so type with always in sync with the schema (prevent drifting)
 // inferSelect represents what we get from the database.

@@ -5,6 +5,7 @@ import { env } from "./config/env.js";
 import { logger } from "./lib/logger.js";
 import { authRoutes } from "./routes/auth.js";
 import { urlRoutes } from "./routes/urls.js";
+import { redirectRoutes } from "./routes/redirect.js";
 
 export async function buildApp() {
   // in this case, we are building the root container level, we are not splitting into plugin yet
@@ -31,6 +32,9 @@ export async function buildApp() {
 
   await app.register(authRoutes);
   await app.register(urlRoutes);
+
+  // Redirect route - wildcard (must be LAST)
+  await app.register(redirectRoutes);
 
   app.addHook("onResponse", (request, reply, done) => {
     // conceptually quite similar to axios interceptor, but happens on server side
