@@ -5,6 +5,7 @@ import Login from "@/pages/Login";
 import Dashboard from "@/pages/Dashboard";
 import { ProtectedRoute } from "./components/layouts/ProtectedRoute";
 import NotFound from "./pages/NotFound";
+import Analytics from "./pages/Analytics";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route element={<ProtectedRoute />}>
         <Route element={<DashboardLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/analytics/:code" element={<Analytics />} />
         </Route>
       </Route>
       <Route path="*" element={<NotFound />} />

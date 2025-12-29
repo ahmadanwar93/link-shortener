@@ -13,6 +13,8 @@ import {
 import { useUrls, useDeleteUrl, getErrorMessage } from "@/hooks/useUrls";
 import type { Url } from "@/types";
 import { toast } from "sonner";
+import { Link } from "react-router-dom";
+import { BarChart3 } from "lucide-react";
 
 export function UrlList() {
   const { data: urls, isLoading, error } = useUrls();
@@ -127,6 +129,16 @@ function UrlCard({ url }: { url: Url }) {
           </div>
 
           <div className="flex gap-2 shrink-0">
+            <Button
+              variant="outline"
+              size="icon"
+              asChild
+              disabled={isOptimistic}
+            >
+              <Link to={`/analytics/${url.shortCode}`}>
+                <BarChart3 className="h-4 w-4" />
+              </Link>
+            </Button>
             <Button
               variant="outline"
               size="sm"

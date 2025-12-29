@@ -20,3 +20,26 @@ export interface ApiError {
 
   details?: Record<string, string[]>;
 }
+
+export interface TimelineDataPoint {
+  date: string;
+  clicks: number;
+}
+
+export interface AggregatedDataPoint {
+  name: string;
+  count: number;
+  // this is just for chart data, it cannot be too strictly typed
+  [key: string]: string | number;
+}
+
+export interface UrlAnalytics {
+  urlId: number;
+  shortCode: string;
+  originalUrl: string;
+  totalClicks: number;
+  timeline: TimelineDataPoint[];
+  devices: AggregatedDataPoint[];
+  browsers: AggregatedDataPoint[];
+  referrers: AggregatedDataPoint[];
+}
